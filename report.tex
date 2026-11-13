@@ -184,7 +184,7 @@ p_e = C(G\setminus e) - \bigl(C(P^*) - c_e\bigr),
 \]
 where $C(G\setminus e)$ is the cheapest path cost when $e$ is removed and $C(P^*)$ is the cost of the chosen path. Edges not on the chosen path are paid $0$. The utility of an edge is $p_e-c_e$ if chosen and $0$ otherwise.
 
-\paragraph{Graph used.} We could not directly verify Figure 7.3, so we used costs consistent with the payments stated in the text: AB$=3$, BE$=1$, EF$=2$ on the cheapest path (cost 6) and an alternative path A--C--D--F with AC$=2$, CD$=3$, DF$=2$ (cost 7). If the book's costs differ, the \texttt{COSTS} dictionary in the code can be changed.
+\paragraph{Graph used.} We use the directed edges and costs shown in Figure 7.3: AB$=3$, AC$=2$, BD$=2$, BE$=1$, CE$=3$, CF$=5$, DF$=2$, and EF$=1$. The candidate paths include ABEF (cost 5), ACEF (cost 6), ABDF (cost 7), and ACF (cost 7). Thus ABEF is the cheapest path.
 
 \subsection{Result}
 \begin{table}[H]
@@ -195,25 +195,25 @@ Edge & Cost & VCG payment\\
 \midrule
 AB & 3 & 4\\
 BE & 1 & 2\\
-EF & 2 & 3\\
-AC, CD, DF & 2, 3, 2 & 0\\
+EF & 1 & 3\\
+AC, BD, CE, CF, DF & 2, 2, 3, 5, 2 & 0\\
 \bottomrule
 \end{tabular}
-\caption{The chosen path is ABEF (cost 6); payments match the text.}
+\caption{The chosen path is ABEF (cost 5); payments match the text.}
 \end{table}
 
 \subsection{Misreporting}
-We chose BE (on the path, true cost 1) and CD (off the path, true cost 3) and let each report every cost from $0$ to $10$ in steps of $0.5$, with the others truthful. Utility is always computed using the \emph{true} cost.
+We chose BE (on the path, true cost 1) and CE (off the path, true cost 3) and let each report every cost from $0$ to $10$ in steps of $0.5$, with the others truthful. Utility is always computed using the \emph{true} cost.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\textwidth]{plots/part3_vcg.png}
-\caption{Utility versus reported cost for BE (left) and CD (right). Red dashed line: true cost.}
+\caption{Utility versus reported cost for BE (left) and CE (right). Red dashed line: true cost.}
 \end{figure}
 
 \begin{itemize}
 \item \textbf{BE (on path):} the utility is $1$ for any report up to $2$ and drops to $0$ for higher reports, since BE then drops out of the cheapest path. The payment does not depend on the report as long as the edge stays on the path, so lying cannot raise it. Truthful reporting is optimal.
-\item \textbf{CD (off path):} the utility is $0$ for every report from $2$ to $10$. Reporting below $2$ would put CD on the winning path but at a payment below its true cost, giving negative utility. No misreport helps.
+\item \textbf{CE (off path):} the utility is $0$ for every report from $2$ to $10$. Reporting below $2$ would put CE on the winning path but at a payment below its true cost, giving negative utility. No misreport helps.
 \end{itemize}
 Thus truthful reporting is a dominant strategy for both edges, as VCG guarantees.
 

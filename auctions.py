@@ -114,10 +114,17 @@ def run_part2():
 
 
 # ---------------------------------------------------------------- Part 3
-# NOTE: edit COSTS if your copy of Figure 7.3 differs. These costs reproduce the
-# payments stated in the text (AB=4, BE=2, EF=3, others 0).
-COSTS = {("A", "B"): 3, ("B", "E"): 1, ("E", "F"): 2,
-         ("A", "C"): 2, ("C", "D"): 3, ("D", "F"): 2}
+# Directed edges and costs read from Figure 7.3.
+COSTS = {
+    ("A", "B"): 3,
+    ("A", "C"): 2,
+    ("B", "D"): 2,
+    ("B", "E"): 1,
+    ("C", "E"): 3,
+    ("C", "F"): 5,
+    ("D", "F"): 2,
+    ("E", "F"): 1,
+}
 SRC, DST = "A", "F"
 
 
@@ -167,7 +174,7 @@ def run_part3():
         print(f"  edge {e[0]}{e[1]} cost {COSTS[e]} paid {p}")
     grid = np.arange(0, 10.001, 0.5)
     fig, axes = plt.subplots(1, 2, figsize=(12, 4))
-    for ax, edge in zip(axes, [("B", "E"), ("C", "D")]):
+    for ax, edge in zip(axes, [("B", "E"), ("C", "E")]):
         on = edge in path
         truth = COSTS[edge]
         us = []

@@ -19,8 +19,8 @@ This folder contains the implementation and report for Assignment 4. The assignm
 
 ### Part 3: VCG cheapest path
 
-- The code enumerates simple paths from A to F, selects the least-cost path, computes VCG payments, and plots the utility of one selected edge on the path and one off the path as their reported costs vary from 0 to 10 in increments of 0.5.
-- **Graph-cost caveat:** the assignment refers to costs in book Figure 7.3, but the supplied assignment PDF does not include that figure and no book source is present in this folder. The current `COSTS` values in `auctions.py` are an inferred example selected to reproduce path ABEF and the stated payments (AB=4, BE=2, EF=3). They have not been verified as the figure's actual edge costs. Confirm the figure's costs and update `COSTS` before treating that part as an exact reproduction of the book example.
+- The code uses the directed edges and costs shown in Figure 7.3: AB=3, AC=2, BD=2, BE=1, CE=3, CF=5, DF=2, and EF=1. It enumerates simple paths from A to F, selects the least-cost path, computes VCG payments, and plots utility for BE (on the chosen path) and CE (off the chosen path) as their reported costs vary from 0 to 10 in increments of 0.5.
+- The resulting chosen path is ABEF with total cost 5, and the payments are AB=4, BE=2, EF=3, and 0 for all other edges, as requested.
 
 ## Files
 
@@ -44,3 +44,5 @@ To compile the report, use a LaTeX installation with `pdflatex`:
 ```bash
 pdflatex report.tex
 ```
+
+The current environment does not have `pdflatex`, so after the Figure 7.3 correction the source `report.tex` is up to date but the existing `Auction_Project.pdf` has not been rebuilt yet. Recompile it with the command above to refresh the PDF and embed the updated Part 3 figure and results.
